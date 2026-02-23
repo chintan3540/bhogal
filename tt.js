@@ -14,7 +14,6 @@ function handleRequest(data) {
   // Log securely (No password/token leak)
   console.log("User Access Log", {
     url: url,
-    user: processedData
   });
 
 
