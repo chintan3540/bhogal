@@ -16,7 +16,7 @@ function handleRequest(data) {
 
 handleRequest({
   type: "password",
-  apiKey: process.env.apiKeu,
+  apiKey: process.env.apiKey,
   userId: "12345",
   userLocationId: "345678",
   password: "Pass@123$",
