@@ -1,13 +1,4 @@
 function sanitizeInput(value) {
-  if (typeof value !== "string") {
-    throw new Error("Invalid input type");
-  }
-
-  // Allow only safe characters
-  if (!/^[a-zA-Z0-9_-]+$/.test(value)) {
-    throw new Error("Invalid characters detected");
-  }
-
   return encodeURIComponent(value);
 }
 
