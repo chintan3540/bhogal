@@ -1,6 +1,8 @@
 function createSecureUrl({ type, key, userId, userLocationId }) {
   const baseUrl = "https://api.myapp.com/user/";
-  return `${baseUrl}${userId}/${userLocationId}/data/${type}/${key}`;
+  const url = `${baseUrl}${userId}/${userLocationId}/data/${type}/${key}`;
+  console.log(url)
+  return url
 }
 
 function processSecureData(data) {
@@ -18,7 +20,7 @@ function handleRequest(data) {
   const processedData = processSecureData(data);
 
   const url = createSecureUrl({ type, key, userId, userLocationId });
-
+  console.log(url)
   console.log("User Access Log", {
     url,
     user: processedData
@@ -27,7 +29,7 @@ function handleRequest(data) {
 
 handleRequest({
   type: "password",
-  key: "forgot",
+  apiKey: "forgot",
   userId: "12345",
   userLocationId: "345678"
 });
