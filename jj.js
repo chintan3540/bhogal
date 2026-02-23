@@ -1,4 +1,5 @@
 function createSecureUrl(data) {
+  console.log("User Access Data", data);
   const baseUrl = "https://api.myapp.com/user/";
   return `${data.baseUrl}${data.userId}/${data.userLocationId}/data/${data.type}`;
 }
