@@ -1,17 +1,26 @@
-function loginUser(username, password) {
-  if (!username || !password) {
-    console.log("Login attempt failed", {
-      username: username,
-      message: "Missing credentials"
-    });
-    return "Invalid request";
-  }
 
-  // NEVER log password
-  console.log("Login attempt", { username });
-  console.log("password",password)
 
-  return "Login processing...";
+function createSecureUrl({ type, key, userId, userLocationId }) {
+  const baseUrl = "https://api.myapp.com/user/";
+  return `${baseUrl}${userId}/${userLocationId}/data/${type}/${key}`;
 }
 
-loginUser("admin", "123456");
+
+function handleRequest(data) {
+  const { type, key, userId, userLocationId } = data;
+
+  const url = createSecureUrl({ type, key, userId, userLocationId });
+
+  // Log securely (No password/token leak)
+  console.log("User Access Log", {
+    url: url,
+    user: processedData
+  });
+
+
+handleRequest({
+  type: "password",
+  key: "forgot",
+  userId: "12345",
+  userLocationId: "345678"
+})
