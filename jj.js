@@ -5,34 +5,31 @@ function sanitizeInput(value) {
 function createSecureUrl({ type, key, userId, userLocationId }) {
   const baseUrl = "https://api.myapp.com/user/";
 
-  const safeUserId = sanitizeInput(userId);
-  const safeLocationId = sanitizeInput(userLocationId);
-  const safeType = sanitizeInput(type);
-  const safeKey = sanitizeInput(key);
+  // const safeUserId = sanitizeInput(userId);
+  // const safeLocationId = sanitizeInput(userLocationId);
+  // const safeType = sanitizeInput(type);
+  // const safeKey = sanitizeInput(key);
 
-  return `${baseUrl}${safeUserId}/${safeLocationId}/data/${safeType}/${safeKey}`;
+  return `${baseUrl}${userId}/${userLocationId}/data/${type}/${key}`;
 }
 
-function processSecureData(data) {
-  return {
-    userId: sanitizeInput(data.userId),
-    userLocationId: sanitizeInput(data.userLocationId),
-    type: sanitizeInput(data.type),
-    key: sanitizeInput(data.key)
-  };
-}
+// function processSecureData(data) {
+//   return {
+//     userId: sanitizeInput(data.userId),
+//     userLocationId: sanitizeInput(data.userLocationId),
+//     type: sanitizeInput(data.type),
+//     key: sanitizeInput(data.key)
+//   };
+// }
 
 function handleRequest(data) {
   try {
-    const processedData = processSecureData(data);
+    // const processedData = processSecureData(data);
 
     const url = createSecureUrl(processedData);
 
     // Avoid logging sensitive information
-    console.log("User Access Log", {
-      endpoint: url,
-      userId: processedData.userId
-    });
+    console.log("User Access Log", url);
 
   } catch (error) {
     console.error("Security validation failed:", error.message);
