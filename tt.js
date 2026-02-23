@@ -1,14 +1,14 @@
-function createSecureUrl({ type, key, userId, userLocationId }) {
+function createSecureUrl({ type, key, userId, userLocationId, token }) {
   const baseUrl = "https://api.myapp.com/user/";
 
-  return `${baseUrl}${userId}/${userLocationId}/data/${type}/${key}`;
+  return `${baseUrl}${userId}/${userLocationId}/data/${type}/${token}`;
 }
 
 function handleRequest(data) {
 
-  const { type, key, userId, userLocationId } = data;
+  const { type, key, userId, userLocationId, token } = data;
 
-  const url = createSecureUrl({ type, key, userId, userLocationId });
+  const url = createSecureUrl({ type, key, userId, userLocationId, token });
 
   console.log("User Access Log", {
     url,
