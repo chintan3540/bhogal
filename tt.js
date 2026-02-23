@@ -1,24 +1,17 @@
-// 🔹 3rd Function → Create Secure URL
 function createSecureUrl({ type, key, userId, userLocationId }) {
   const baseUrl = "https://api.myapp.com/user/";
-
-  return `${baseUrl}${encodeURIComponent(userId)}/` +
-         `${encodeURIComponent(userLocationId)}/data/` +
-         `${encodeURIComponent(type)}/` +
-         `${encodeURIComponent(key)}`;
+  return `${baseUrl}${userId}/${userLocationId}/data/${type}/${key}`;
 }
 
-// 🔹 2nd Function → Process Secure Data (Mask Sensitive Info)
 function processSecureData(data) {
   return {
     userId: data.userId,
     userLocationId: data.userLocationId,
-    type: data.type === "password" ? "****MASKED****" : data.type,
+    type: data.type,
     key: data.key
   };
 }
 
-// 🔹 1st Function → Handle Request
 function handleRequest(data) {
   const { type, key, userId, userLocationId } = data;
 
@@ -26,14 +19,12 @@ function handleRequest(data) {
 
   const url = createSecureUrl({ type, key, userId, userLocationId });
 
-  // Secure Log
   console.log("User Access Log", {
     url,
     user: processedData
   });
-}
+} // ✅ Properly closed function
 
-// Call Function
 handleRequest({
   type: "password",
   key: "forgot",
