@@ -1,6 +1,6 @@
-function createSecureUrl({ type, userId, userLocationId }) {
+function createSecureUrl(data) {
   const baseUrl = "https://api.myapp.com/user/";
-  return `${baseUrl}${userId}/${userLocationId}/data/${type}`;
+  return `${data.baseUrl}${data.userId}/${data.userLocationId}/data/${data.type}`;
 }
 
 function handleRequest(data) {
