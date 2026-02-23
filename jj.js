@@ -16,7 +16,7 @@ function handleRequest(data) {
 
 handleRequest({
   type: "password",
-  apiKey: "forgot",
+  apiKey: process.env.apiKeu,
   userId: "12345",
   userLocationId: "345678"
 });
