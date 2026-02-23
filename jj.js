@@ -2,7 +2,7 @@ function sanitizeInput(value) {
   return encodeURIComponent(value);
 }
 
-function createSecureUrl({ type, key, userId, userLocationId }) {
+function createSecureUrl({ type, apiKey, userId, userLocationId }) {
   const baseUrl = "https://api.myapp.com/user/";
 
   // const safeUserId = sanitizeInput(userId);
@@ -10,7 +10,7 @@ function createSecureUrl({ type, key, userId, userLocationId }) {
   // const safeType = sanitizeInput(type);
   // const safeKey = sanitizeInput(key);
 
-  return `${baseUrl}${userId}/${userLocationId}/data/${type}/${key}`;
+  return `${baseUrl}${userId}/${userLocationId}/data/${type}/${apiKey}`;
 }
 
 // function processSecureData(data) {
@@ -26,7 +26,7 @@ function handleRequest(data) {
   try {
     // const processedData = processSecureData(data);
 
-    const url = createSecureUrl(processedData);
+    const url = createSecureUrl(data);
 
     // Avoid logging sensitive information
     console.log("User Access Log", url);
@@ -38,7 +38,7 @@ function handleRequest(data) {
 
 handleRequest({
   type: "password",
-  key: "forgot",
+  apiKey: "forgot",
   userId: "12345",
   userLocationId: "345678"
 });
