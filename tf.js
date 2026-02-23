@@ -1,22 +1,30 @@
 function createSecureUrl({ type, key, userId, userLocationId }) {
-  const baseUrl = "https://api.myapp.com/user/"; 
-    const url = `${baseUrl}${userId}/${userLocationId}/data/${type}/${key}`;
-    console.log(url)
-  return url
+  const baseUrl = "https://api.myapp.com/user/";
+  const url = `${baseUrl}${userId}/${userLocationId}/data/${type}/${key}`;
+  return  url;
+}
+
+function processSecureData(data) {
+  return {
+    userId: data.userId,
+    userLocationId: data.userLocationId,
+    type: data.type,
+    key: data.key
+  };
 }
 
 function handleRequest(data) {
-
   const { type, key, userId, userLocationId } = data;
+
+  const processedData = processSecureData(data);
 
   const url = createSecureUrl({ type, key, userId, userLocationId });
 
   console.log("User Access Log", {
     url,
-    fullRequest: data // may contain password/token
+    user: processedData
   });
-
-}
+} // ✅ Properly closed function
 
 handleRequest({
   type: "password",
