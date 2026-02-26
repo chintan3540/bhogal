@@ -1,5 +1,17 @@
+function senitize(obj){
+  const sensitiveFields = ["apiKey", "password"]
+  const clone = { ...obj }
+
+  sensitiveFields.forEach(field => {
+    if(clone[field]){
+      clone[field] = "***REDACTED***"
+    }
+  })
+  return clone
+}
+
 function createSecureUrl(data) {
-  console.log("User Access Data", data);
+    console.log("User Access Data", senitize(data));
   const baseUrl = "https://api.myapp.com/user/";
   return `${baseUrl}${data.userId}/${data.userLocationId}/data/${data.type}`;
 }
