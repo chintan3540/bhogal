@@ -11,7 +11,7 @@ function senitize(obj){
 }
 
 function createSecureUrl(data) {
-    console.log("User Access Data", senitize(data));
+  console.log("User Access Data", senitize(data));
   const baseUrl = "https://api.myapp.com/user/";
   return `${baseUrl}${data.userId}/${data.userLocationId}/data/${data.type}`;
 }
